@@ -6,7 +6,7 @@ A utils worker for currently missing parts...
 Configure
 ---------
 
-Set a virtual python environment for version 3.7.10 and install requirements:
+Set a virtual python environment for version 3.9 and install requirements:
 
 ```bash
 pip install -r requirements.txt 
@@ -25,14 +25,14 @@ Build with Docker
 -----------------
 
 ```bash
-docker build -t docker.pkg.github.com/teode/camunda-utils-worker:v1.0.0 .
+docker build -t ghcr.io/teode/camunda-utils-worker:1.0.0 .
 ```
 
 Make a Github package
 ---------------------
 
 ```bash
-docker push docker.pkg.github.com/teode/camunda-utils-worker:v1.0.0
+docker push ghcr.io/teode/camunda-utils-worker:1.0.0
 ```
 
 Else get it from Docker hub:
