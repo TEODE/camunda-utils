@@ -5,9 +5,10 @@ from pyzeebe import ZeebeWorker, Job, create_insecure_channel
 logging.basicConfig(format='%(levelname)s:%(message)s', 
     level=int(os.environ.get("LOGGING_LEVEL", "20")))
 
+
 channel = create_insecure_channel(hostname=os.environ.get("HOSTNAME","localhost"), 
                                   port=int(os.environ.get("PORT", "26500"))) # Create grpc channel
-worker = ZeebeWorker(channel) # Create a zeebe worker
+worker = ZeebeWorker(grpc_channel=channel, poll_retry_delay=10, max_connection_retries=-1) # Create a zeebe worker
 logging.info("Worker created!")
 
 async def on_error(exception: Exception, job: Job):
@@ -25,4 +26,4 @@ def utils_task(jsonString: str) -> dict:
     return {"response": jsonObject}
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(worker.work()) 
+loop.run_until_complete(worker.work())

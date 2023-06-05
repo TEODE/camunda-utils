@@ -26,6 +26,10 @@ Build with Docker
 
 ```bash
 docker build -t ghcr.io/teode/camunda-utils-worker:1.0.0 .
+````
+(On Apple M1 for x86_64 platform)
+```bash
+docker buildx build --platform=linux/amd64 -t ghcr.io/teode/camunda-utils-worker:1.0.0 .
 ```
 
 Make a Github package
