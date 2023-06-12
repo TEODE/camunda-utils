@@ -21,7 +21,7 @@ async def on_error(exception: Exception, job: Job):
 @worker.task(task_type="utils-json-string-to-object", exception_handler=on_error) # Parse JSON
 def utils_task(jsonString: str) -> dict:
     logging.info("Processing json string to object task")
-    jsonObject = json.loads(jsonString.replace('\\n', ' ').replace('\n', ' ').replace('\\t', ' ').replace('\\r', ' ').replace('\r', ' ').replace('\\"', '"').strip())
+    jsonObject = json.loads(jsonString.replace('\\n', ' ').replace('\n', ' ').replace('\\t', ' ').replace('\\r', ' ').replace('\r', ' ').replace('\\"', '"').replace("\\", "").strip())
     logging.info("Json string to object task processed")
     return {"response": jsonObject}
 
